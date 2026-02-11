@@ -43,16 +43,6 @@ const RecentOrders = ({ orders }: RecentOrdersProps) => {
             />
           </EmptyState>
         )}
-        {orders.map((o) => {
-          return (
-            <OrderItem
-              customerName={o.client}
-              itemCount={o.quantity}
-              status={o.status}
-              totalPrice={o.money}
-            />
-          );
-        })}
       </div>
     </div>
   );
