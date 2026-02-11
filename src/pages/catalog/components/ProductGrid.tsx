@@ -30,7 +30,9 @@ const ProductsGrid = ({
     );
   }
   if (products.length === 0 && loading) {
-    return <PageSkeleton message="Buscando Produtos da loja" />;
+    return <div className="flex-1 flex justify-center items-center">
+      <PageSkeleton message="Buscando Produtos da loja" />
+    </div>;
   }
 
   return (
