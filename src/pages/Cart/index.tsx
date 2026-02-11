@@ -14,6 +14,7 @@ import { useStore } from "../../hooks/UseStore";
 import EmptyState from "../../components/EmptyState";
 import EmptyCart from "../../assets/empty-cart.png";
 import { useNavigate } from "react-router-dom";
+import PageSkeleton from "../../components/PageSkeleton";
 
 interface CartProps {
   onClose: () => void;
@@ -28,7 +29,7 @@ const Cart = ({ onClose }: CartProps) => {
   const [isOrderMethodSelectorOpen, setIsOrderMethodSelectorOpen] =
     useState(false);
   const debouncedCartProducts = useDebounce(cartProducts, 400);
-
+  const [loading, setLoading] = useState(false);
   const [orderMethod, setOrderMethod] = useState<OrderMethod>(null);
   const [cartItems, setCartItems] = useState<CartItemProduct[]>([]);
   const [fullName, setFullName] = useState("");
@@ -40,15 +41,19 @@ const Cart = ({ onClose }: CartProps) => {
   useEffect(() => {
     if (debouncedCartProducts.length === 0) {
       setCartItems([]);
+      setLoading(false);
       return;
     }
 
     const fetchData = async () => {
       try {
-        const cartItems  = await getCartProducts(debouncedCartProducts);
-        setCartItems(cartItems );
+        setLoading(true);
+        const cartItems = await getCartProducts(debouncedCartProducts);
+        setCartItems(cartItems);
       } catch (error) {
         if (error instanceof Error) toast.error(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -143,7 +148,9 @@ const Cart = ({ onClose }: CartProps) => {
         </button>
       </div>
 
-      {cartItems.length === 0 ? (
+      {loading && cartItems.length === 0 ? (
+        <PageSkeleton message="Carregando seu carrinho..." />
+      ) : cartItems.length === 0 ? (
         <EmptyState
           title="Seu carrinho está vazio"
           description="Parece que você ainda não adicionou nenhum produto. Explore nossa loja e encontre algo que goste!"
@@ -160,7 +167,13 @@ const Cart = ({ onClose }: CartProps) => {
           />
         </EmptyState>
       ) : (
-        <div className="flex flex-col gap-4  py-4 overflow-y-auto no-scrollbar h-106">
+        <div
+          className={`flex flex-col gap-4 py-4 overflow-y-auto no-scrollbar h-106 transition-opacity duration-300 ${
+            loading && cartItems.length > 0
+              ? "opacity-50 pointer-events-none"
+              : ""
+          }`}
+        >
           {cartItems.map((item) => {
             const isInvalid =
               !item.available || item.inStock < item.cartQuantity;

@@ -11,7 +11,7 @@ const ReviewsHeader = ({ totalReviews, openModal }: ReviewsHeaderProps) => {
           <i className="bi bi-chat-left text-xl" />
         </span>
         <span>
-          <h1 className="text-2xl font-semibold">Todas as Avaliações</h1>
+          <h1 className="text-lg font-semibold">Todas as Avaliações</h1>
           <p className="text-gray-500 text-sm">{totalReviews} Avaliações</p>
         </span>
       </div>
