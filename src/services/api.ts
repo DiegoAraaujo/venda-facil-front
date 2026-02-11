@@ -6,10 +6,8 @@ import {
 } from "../utils/authStorage";
 import { triggerLogout } from "../services/authBridge";
 
-const PORT = 3000;
-
 const api = axios.create({
-  baseURL: `http://localhost:${PORT}/api`,
+ baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
 });
 
