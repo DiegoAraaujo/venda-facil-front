@@ -1,73 +1,62 @@
-# React + TypeScript + Vite
+# 🚀 Venda Fácil – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O **Venda Fácil** é uma plataforma que permite lojistas criarem sua própria vitrine online de forma simples e organizada.
 
-Currently, two official plugins are available:
+Lojistas podem cadastrar produtos, gerenciar pedidos e personalizar sua loja.
+Clientes podem navegar pelas vitrines, visualizar produtos e realizar compras com praticidade.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠 Tecnologias Utilizadas
 
-## React Compiler
+* React
+* TypeScript
+* Vite
+* Axios
+* React Router DOM
+* TailwindCSS
+* Context API
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+## 🌍 Deploy
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Aplicação hospedada no Vercel:
+[https://venda-facil-front.vercel.app/](https://venda-facil-front.vercel.app/)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## ⚙️ Configuração do Ambiente
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1️⃣ Instalar dependências
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2️⃣ Criar arquivo `.env`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Crie um arquivo `.env` na raiz do projeto:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```env
+VITE_API_URL=http://localhost:3000/api
 ```
+
+⚠️ A variável deve começar com `VITE_` para funcionar no Vite.
+
+
+## ▶️ Rodando o Projeto Localmente
+
+```bash
+npm run dev
+```
+
+Acesse:
+[http://localhost:5173](http://localhost:5173)
+
+
+## 📌 Funcionalidades
+
+* Cadastro de loja
+* Login de lojista
+* Cadastro de produtos
+* Visualização pública da loja
+* Carrinho de compras
+* Avaliações
+* Dashboard de pedidos e vendas
