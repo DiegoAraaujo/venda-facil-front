@@ -17,9 +17,7 @@ A proposta do projeto é unir tecnologia, praticidade e organização, oferecend
 * React Router DOM
 * TailwindCSS
 * Context API
-
 ---
-
 ## 🌍 Deploy
 
 Aplicação hospedada no Vercel:
