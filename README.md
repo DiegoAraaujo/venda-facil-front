@@ -5,9 +5,6 @@ O **Venda Fácil** é uma plataforma que permite lojistas criarem sua própria v
 Lojistas podem cadastrar produtos, gerenciar pedidos e personalizar sua loja.
 Clientes podem navegar pelas vitrines, visualizar produtos e realizar compras com praticidade.
 
-Este repositório contém o **frontend da aplicação**, focado em performance, organização e boa experiência do usuário.
-
-
 ## 🛠 Tecnologias Utilizadas
 
 * React
