@@ -32,11 +32,11 @@ const SubCategoriesList = ({
 
     setCategories((prev) =>
       prev.map((c) => {
-        if (normalize(c.value) !== normalize(category.value)) return c;
+        if (normalize(c.name) !== normalize(category.name)) return c;
 
         const normalizedSub = normalize(subcategory);
 
-        if (c.subCategories.some((sc) => normalize(sc) === normalizedSub)) {
+        if (c.subcategories.some((sc) => normalize(sc) === normalizedSub)) {
           toast.warning("Essa subcategoria já existe");
           return c;
         }
@@ -45,7 +45,7 @@ const SubCategoriesList = ({
 
         return {
           ...c,
-          subCategories: [...c.subCategories, subcategory.trim()],
+          subCategories: [...c.subcategories, subcategory.trim()],
         };
       }),
     );
@@ -59,11 +59,11 @@ const SubCategoriesList = ({
   const removeSubcategory = (subToRemove: string) => {
     setCategories((prev) =>
       prev.map((c) => {
-        if (normalize(c.value) !== normalize(category.value)) return c;
+        if (normalize(c.name) !== normalize(category.name)) return c;
 
         return {
           ...c,
-          subCategories: c.subCategories.filter(
+          subCategories: c.subcategories.filter(
             (sc) => normalize(sc) !== normalize(subToRemove),
           ),
         };
@@ -106,9 +106,9 @@ const SubCategoriesList = ({
         </button>
       </div>
 
-      {category.subCategories.length > 0 && (
+      {category.subcategories.length > 0 && (
         <ul className="border-l-2 border-emerald-200 flex flex-col gap-2">
-          {category.subCategories.map((sb) => (
+          {category.subcategories.map((sb) => (
             <li
               key={sb}
               className="px-6 py-2 text-sm hover:bg-gray-100 rounded-xl group relative transition-colors duration-300"

@@ -16,7 +16,7 @@ const CategoryItem = ({ category, setCategories }: CategoryItemProps) => {
 
   const removeCategory = () => {
     setCategories((prev) =>
-      prev.filter((c) => normalize(c.value) !== normalize(category.value)),
+      prev.filter((c) => normalize(c.name) !== normalize(category.name)),
     );
   };
 
@@ -24,8 +24,8 @@ const CategoryItem = ({ category, setCategories }: CategoryItemProps) => {
     <div>
       <div className="flex justify-between items-center p-4 bg-gray-100 rounded-t-xl">
         <CategoryInfo
-          categoryName={category.value}
-          numberSubcategories={category.subCategories.length}
+          categoryName={category.name}
+          numberSubcategories={category.subcategories.length}
         />
         <CategoryActions
           removeCategory={removeCategory}

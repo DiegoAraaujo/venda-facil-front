@@ -1,4 +1,3 @@
-import { toast } from "sonner";
 import { formatCurrency } from "../../../utils/formatCurrency";
 import { confirmToast } from "../../categories/components/confirmDeleteCategory";
 

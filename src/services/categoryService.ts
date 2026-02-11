@@ -1,10 +1,15 @@
 import axios from "axios";
-import type { Category } from "../interfaces/category/CategoriesSimple";
 import api from "./api";
 
-export const createCategories = async (categories: Category) => {
+export const createCategories = async ({
+  name,
+  subcategories,
+}: {
+  name: string;
+  subcategories: string[];
+}) => {
   try {
-    const res = await api.post(`/categories/`, categories);
+    const res = await api.post(`/categories/`, { name, subcategories });
     return res.data;
   } catch (error: unknown) {
     console.log(error);
@@ -12,9 +17,7 @@ export const createCategories = async (categories: Category) => {
   }
 };
 
-export const getCategoriesByStore = async (
-  StoreId: number,
-) => {
+export const getCategoriesByStore = async (StoreId: number) => {
   try {
     const res = await api.get(`/categories/${StoreId}`);
     return res.data;
