@@ -17,6 +17,7 @@ A proposta do projeto é unir tecnologia, praticidade e organização, oferecend
 * Context API
 ---
 ## 🌍 Deploy
+
 Aplicação hospedada no Vercel:
 [https://venda-facil-front.vercel.app/](https://venda-facil-front.vercel.app/)
 ---
@@ -46,7 +47,7 @@ A aplicação estará disponível em:
 * Visualização pública da loja
 * Carrinho de compras
 * Avaliações
-* Dadhboard de pedidos e vendas
+* Dashboard de pedidos e vendas
 
 ---
 
