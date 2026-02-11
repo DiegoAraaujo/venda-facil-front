@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import VendaFacilLogo from "../../../assets/venda_facil_logo.png";
+import VendaFacilLogo from "../../../assets/venda-facil-logo.png";
 const Header = () => {
   return (
     <header className="shadow-sm  sticky top-0 left-0 z-30 bg-white mb-8">
