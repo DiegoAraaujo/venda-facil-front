@@ -127,6 +127,7 @@ const OrderCard = ({
       </div>
 
       <OrderCardActions
+        phoneNumber={whatsapp}
         status={selectedStatus}
         onCancel={() => handleUpdatePurchaseStatus(orderNumber, "CANCELED")}
         onConfirm={() => handleUpdatePurchaseStatus(orderNumber, "COMPLETED")}

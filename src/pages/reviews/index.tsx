@@ -11,12 +11,14 @@ import NoReviews from "../../assets/no-reviews.png";
 import NewReviewModal from "./components/NewReviewModal";
 import type { PaginationMeta } from "../../interfaces/paginationMeta";
 import EmptyState from "../../components/EmptyState";
+import PageSkeleton from "../../components/PageSkeleton";
 const Reviews = () => {
   const { store } = useStore();
   const [page, setPage] = useState<number>(0);
   const [stats, setStats] = useState<ReviewStats | null>(null);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [paginationMeta, setPaginationMeta] = useState<PaginationMeta | null>(
     null,
   );
@@ -34,11 +36,14 @@ const Reviews = () => {
 
   const fetchReviews = async (pageNumber = page) => {
     try {
+      setLoading(true);
       const reviews = await getReviews(store.id, pageNumber + 1);
       setReviews(reviews.data);
       setPaginationMeta(reviews.meta);
     } catch (error) {
       if (error instanceof Error) return toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -66,36 +71,50 @@ const Reviews = () => {
             ratingDistribution={stats.ratingDistribution}
           />
         )}
-      <div className="flex flex-col gap-4 flex-1">
-        {reviews.length > 0 ? (
-          reviews.map((review) => (
-            <ReviewCard
-              authorName={review.author_name}
-              comment={review.comment}
-              createdAt={review.created_at}
-              rating={review.rating}
-              profile_photo={review.profile_photo}
-              key={review.id}
-            />
-          ))
-        ) : (
-          <EmptyState
-            title="Nenhuma avaliação encontrada"
-            description="Ainda não há comentários sobre este produto. Seja o primeiro a deixar sua opinião!"
-          >
-            <img
-              src={NoReviews} // imagem ilustrativa de reviews vazios
-              alt="Nenhuma avaliação disponível"
-              className="w-52 rounded-2xl"
-            />
-          </EmptyState>
-        )}
-      </div>
+      {loading && reviews.length === 0 ? (
+        <div className="flex flex-1 justify-center items-center">
+          <PageSkeleton message="Buscando as avaliações dos nossos clientes" />
+        </div>
+      ) : (
+        <div
+          className={`flex flex-col gap-4 flex-1 transition-opacity duration-300 ${
+            loading ? "opacity-50 pointer-events-none" : "opacity-100"
+          }`}
+        >
+          {reviews.length > 0 ? (
+            reviews.map((review) => (
+              <ReviewCard
+                key={review.id}
+                authorName={review.author_name}
+                comment={review.comment}
+                createdAt={review.created_at}
+                rating={review.rating}
+                profile_photo={review.profile_photo}
+              />
+            ))
+          ) : (
+            <EmptyState
+              title="Nenhuma avaliação encontrada"
+              description="Ainda não há comentários sobre este produto. Seja o primeiro a deixar sua opinião!"
+            >
+              <img
+                src={NoReviews}
+                alt="Nenhuma avaliação disponível"
+                className="w-52 rounded-2xl"
+              />
+            </EmptyState>
+          )}
+        </div>
+      )}
+
       {paginationMeta &&
         (paginationMeta.hasNextPage || paginationMeta.hasPrevPage) && (
           <Pagination
             page={page}
-            setPage={setPage}
+            setPage={(value) => {
+              if (loading) return;
+              setPage(value);
+            }}
             total={paginationMeta.totalPages}
           />
         )}

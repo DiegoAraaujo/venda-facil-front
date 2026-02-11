@@ -21,7 +21,7 @@ const BrandItem = ({
           isSelected
             ? "bg-green-100 text-green-600 border border-green-300"
             : "bg-gray-100 text-gray-500"
-        }  px-4 py-1 rounded-xl  text-xs sm:text-sm cursor-pointer`}
+        }  px-4 py-1 rounded-xl  text-xs sm:text-sm cursor-pointer text-center`}
       >
         {label}
       </li>

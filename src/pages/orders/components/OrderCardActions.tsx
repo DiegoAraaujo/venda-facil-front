@@ -1,12 +1,14 @@
 import type { OrderStatus } from "../../../interfaces/order/order-status";
 
 interface OrderCardActionsProps {
+  phoneNumber: string;
   status: OrderStatus;
   onConfirm: () => void;
   onCancel: () => void;
 }
 
 const OrderCardActions = ({
+  phoneNumber,
   status,
   onConfirm,
   onCancel,
@@ -31,9 +33,13 @@ const OrderCardActions = ({
         </div>
       )}
 
-      <button className="bg-emerald-100 p-2 rounded-xl text-sm text-green-600">
+      <a
+        href={`https://wa.me/55${phoneNumber}`}
+        target="_blank"
+        className="bg-emerald-100 p-2 rounded-xl text-sm text-green-600"
+      >
         WhatsApp
-      </button>
+      </a>
     </div>
   );
 };
