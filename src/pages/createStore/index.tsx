@@ -91,7 +91,7 @@ const CreateStore = () => {
   };
 
   return (
-    <section className="max-w-7xl w-full m-auto flex flex-col gap-12 py-12">
+    <section className="max-w-7xl w-full m-auto flex flex-col gap-12 p-4">
       <div className="flex gap-8 items-center sticky top-0 left-0 h-20 bg-white z-30">
         <Link
           to="/"
